@@ -11,5 +11,15 @@ func _ready() -> void:
 
 
 func _on_animation_finished() -> void:
-	print("finish")
 	queue_free()
+
+
+func _on_body_shape_entered(
+	body_rid: RID,
+	body: Node,
+	body_shape_index: int,
+	local_shape_index: int
+) -> void:
+	if body is Rocket:
+		var rocket = body as Rocket
+		rocket.call_deferred("explode")

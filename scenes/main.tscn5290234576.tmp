@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://ct46bobohe3t1" path="res://scenes/rocket_sr_25.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dirovth2ql4p8" path="res://scenes/rocket_error.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://cpfugltcuujdw" path="res://scenes/hud.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://dmxp0nujw6kyg" path="res://scenes/rocket_teamkiller.tscn" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://14bwi5okpebk" path="res://scenes/background_manager.tscn" id="5_tbgi4"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
@@ -18,7 +17,6 @@ point_count = 5
 script = ExtResource("1_0xm2m")
 sr_25_scene = ExtResource("2_tbgi4")
 error_scene = ExtResource("3_tefeu")
-teamkiller_scene = ExtResource("4_o6xl0")
 speed_range = Vector2(300, 500)
 smart_rockets = true
 random_direction = true
@@ -32,6 +30,7 @@ gap = 1.0
 position = Vector2(-1, -4)
 
 [node name="RocketTimer" type="Timer" parent="." unique_id=1308844398]
+wait_time = 0.571
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=565039221]
 

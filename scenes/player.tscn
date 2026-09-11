@@ -67,7 +67,7 @@ animations = [{
 }]
 
 [node name="Player" type="Area2D" unique_id=1973581379]
-collision_layer = 2
+collision_mask = 6
 script = ExtResource("1_y4r1p")
 metadata/_edit_group_ = true
 
@@ -75,8 +75,8 @@ metadata/_edit_group_ = true
 position = Vector2(38, 7)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_q13i1")
-animation = &"rest"
-frame_progress = 0.548071
+animation = &"right"
+frame_progress = 0.47497517
 speed_scale = 2.0
 
 [node name="PlayerShape" type="CollisionPolygon2D" parent="." unique_id=1834008865]

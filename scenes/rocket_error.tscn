@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://dirovth2ql4p8"]
 
 [ext_resource type="PackedScene" uid="uid://bvycqu7kyq14p" path="res://scenes/rocket_base.tscn" id="1_pujks"]
-[ext_resource type="Texture2D" uid="uid://b8o6dfdwwqxki" path="res://sprites/Error/Error1.png" id="2_36nmb"]
-[ext_resource type="Texture2D" uid="uid://dp8ixkekfivdh" path="res://sprites/Error/Error2.png" id="3_mxaka"]
-[ext_resource type="Texture2D" uid="uid://clgc7snw61wj8" path="res://sprites/Error/Error3.png" id="4_cfasp"]
-[ext_resource type="Texture2D" uid="uid://cxoso3doeddgk" path="res://sprites/Error/Error4.png" id="5_pxrcw"]
-[ext_resource type="Texture2D" uid="uid://c2oog781yaaqt" path="res://sprites/Error/Error5.png" id="6_3ldya"]
-[ext_resource type="Texture2D" uid="uid://bm4ohqk4ka6ne" path="res://sprites/Error/Error6.png" id="7_e2rlu"]
+[ext_resource type="Texture2D" uid="uid://b8o6dfdwwqxki" path="res://sprites/Error/fly/Error1.png" id="2_36nmb"]
+[ext_resource type="PackedScene" uid="uid://bdgg8wtu053vp" path="res://scenes/explosion_error.tscn" id="2_mxaka"]
+[ext_resource type="Texture2D" uid="uid://dp8ixkekfivdh" path="res://sprites/Error/fly/Error2.png" id="3_mxaka"]
+[ext_resource type="Texture2D" uid="uid://clgc7snw61wj8" path="res://sprites/Error/fly/Error3.png" id="4_cfasp"]
+[ext_resource type="Texture2D" uid="uid://cxoso3doeddgk" path="res://sprites/Error/fly/Error4.png" id="5_pxrcw"]
+[ext_resource type="Texture2D" uid="uid://c2oog781yaaqt" path="res://sprites/Error/fly/Error5.png" id="6_3ldya"]
+[ext_resource type="Texture2D" uid="uid://bm4ohqk4ka6ne" path="res://sprites/Error/fly/Error6.png" id="7_e2rlu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y4r1p"]
 animations = [{
@@ -38,9 +39,11 @@ animations = [{
 size = Vector2(93, 287)
 
 [node name="RocketError" unique_id=1950315640 instance=ExtResource("1_pujks")]
+explosion_scene = ExtResource("2_mxaka")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1734490890]
 rotation = -1.5707964
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_y4r1p")
 animation = &"fly"
 frame = 2
@@ -49,4 +52,5 @@ speed_scale = 1.5
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=846281002]
 position = Vector2(-0.5, -0.5)
+scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_d2wvv")

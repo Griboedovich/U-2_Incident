@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://by1sykrgpcl4g" path="res://scripts/rocket_base.gd" id="1_77pax"]
 
-[node name="RocketBase" type="RigidBody2D" unique_id=1950315640]
-collision_mask = 0
+[node name="RocketBase" type="RigidBody2D" unique_id=1950315640 groups=["rockets"]]
+collision_layer = 2
+collision_mask = 4
 gravity_scale = 0.0
+max_contacts_reported = 5
 script = ExtResource("1_77pax")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1734490890]
+scale = Vector2(0.75, 0.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=846281002]
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1027354170]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1027354170 groups=["rockets"]]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

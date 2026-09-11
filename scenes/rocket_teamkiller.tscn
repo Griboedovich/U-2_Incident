@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dmxp0nujw6kyg"]
+
+[ext_resource type="PackedScene" uid="uid://bvycqu7kyq14p" path="res://scenes/rocket_base.tscn" id="1_0y3de"]
+[ext_resource type="Script" uid="uid://cl2hud78ctb0a" path="res://scripts/rocket_teamkiller.gd" id="2_jl0qw"]
+[ext_resource type="PackedScene" uid="uid://cxoqwxcfb1uu5" path="res://scenes/explosion_sr_75.tscn" id="3_jl0qw"]
+[ext_resource type="Texture2D" uid="uid://duidhtda7lvkl" path="res://sprites/SR-75/fly/SR-25_fly1.png" id="3_vdd8n"]
+[ext_resource type="Texture2D" uid="uid://d12mkrv5w102i" path="res://sprites/SR-75/fly/SR-25_fly2.png" id="4_k3d6t"]
+[ext_resource type="Texture2D" uid="uid://cawp2lj4c4qel" path="res://sprites/SR-75/fly/SR-25_fly3.png" id="5_56gd0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77pax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vdd8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k3d6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_56gd0")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wa1fb"]
+radius = 40.0
+height = 192.0
+
+[node name="RocketTeamkiller" unique_id=1950315640 instance=ExtResource("1_0y3de")]
+collision_mask = 6
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("2_jl0qw")
+explosion_scene = ExtResource("3_jl0qw")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1734490890]
+sprite_frames = SubResource("SpriteFrames_77pax")
+animation = &"fly"
+frame_progress = 0.5136859
+speed_scale = 2.0
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=846281002]
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_wa1fb")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2" unique_id=1027354170]
+rect = Rect2(-43, -128, 86, 254)
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

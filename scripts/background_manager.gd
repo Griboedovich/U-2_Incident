@@ -11,6 +11,7 @@ extends Node2D
 	strip_1.get_child(0).get_texture().get_size()
 )
 
+
 func _ready() -> void:
 	strip_1.position.y -= bg_size.y * 3 + gap
 	strip_2.position.y += strip_1.position.y - bg_size.y * 4 + gap

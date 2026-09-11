@@ -11,10 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bimjr8oq365yu" path="res://sprites/SR-75/explosion/explosion8.png" id="9_sv3os"]
 [ext_resource type="Texture2D" uid="uid://bnkup5ngdkwcv" path="res://sprites/SR-75/explosion/explosion9.png" id="10_tf5ek"]
 [ext_resource type="Texture2D" uid="uid://bk5ihqi0lkln4" path="res://sprites/SR-75/explosion/explosion10.png" id="11_mvrnw"]
-[ext_resource type="Texture2D" uid="uid://diwnkanhlrktj" path="res://sprites/SR-75/explosion/explosion11.png" id="12_pkfxf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2did"]
-radius = 136.0
+radius = 150.21318
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n8mql"]
 animations = [{
@@ -48,9 +47,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_mvrnw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_pkfxf")
 }],
 "loop": 0,
 "name": &"explosion",
@@ -64,8 +60,7 @@ position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_d2did")
 
 [node name="AnimatedSprite2D" parent="." index="1" unique_id=2083969540]
+scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_n8mql")
 animation = &"explosion"
-frame = 10
-frame_progress = 1.0
 speed_scale = 2.0

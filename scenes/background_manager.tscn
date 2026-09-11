@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://14bwi5okpebk"]
+
+[ext_resource type="Script" uid="uid://cgsem8hckwtvg" path="res://scripts/background_manager.gd" id="1_46we0"]
+[ext_resource type="PackedScene" uid="uid://d1r8fq41ar2ph" path="res://scenes/background_strip.tscn" id="2_wk5uv"]
+[ext_resource type="Texture2D" uid="uid://bgdmfmc1s5ci0" path="res://sprites/Background/Atmosphere.png" id="3_wk5uv"]
+
+[node name="BackgroundManager" type="Node2D" unique_id=1909795562]
+script = ExtResource("1_46we0")
+
+[node name="BackgroundStrip1" parent="." unique_id=371261721 instance=ExtResource("2_wk5uv")]
+
+[node name="BackgroundStrip2" parent="." unique_id=1237170744 instance=ExtResource("2_wk5uv")]
+
+[node name="Atmosphere" type="Sprite2D" parent="." unique_id=1515047943]
+position = Vector2(960, 540)
+texture = ExtResource("3_wk5uv")

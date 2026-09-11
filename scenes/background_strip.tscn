@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d1r8fq41ar2ph"]
+
+[ext_resource type="Texture2D" uid="uid://64eap237arwv" path="res://sprites/Background/Background_1.png" id="1_4els6"]
+[ext_resource type="Texture2D" uid="uid://difgj4twftjbf" path="res://sprites/Background/Background_2.png" id="2_6f2b0"]
+[ext_resource type="Texture2D" uid="uid://cf3dh1xomcdjm" path="res://sprites/Background/Background_3.png" id="3_kupfj"]
+[ext_resource type="Texture2D" uid="uid://bbt5c3jw75ijy" path="res://sprites/Background/Background_4.png" id="4_txea5"]
+
+[node name="BackgroundStrip" type="Node2D" unique_id=371261721]
+
+[node name="Background1" type="Sprite2D" parent="." unique_id=1970526402]
+position = Vector2(960, 540)
+texture = ExtResource("1_4els6")
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=1004639324]
+position = Vector2(960, 1620)
+texture = ExtResource("2_6f2b0")
+
+[node name="Background3" type="Sprite2D" parent="." unique_id=1659709547]
+position = Vector2(960, 2700)
+texture = ExtResource("3_kupfj")
+
+[node name="Background4" type="Sprite2D" parent="." unique_id=1793350570]
+position = Vector2(960, 3780)
+texture = ExtResource("4_txea5")

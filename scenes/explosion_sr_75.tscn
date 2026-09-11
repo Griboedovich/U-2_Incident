@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cxoqwxcfb1uu5"]
+
+[ext_resource type="PackedScene" uid="uid://t31oxkuspo0p" path="res://scenes/explosion_base.tscn" id="1_h8bq7"]
+[ext_resource type="Texture2D" uid="uid://c0ptae1beplj2" path="res://sprites/SR-75/explosion/explosion1.png" id="2_58i20"]
+[ext_resource type="Texture2D" uid="uid://d1a7t8dv5ejd" path="res://sprites/SR-75/explosion/explosion2.png" id="3_dviaq"]
+[ext_resource type="Texture2D" uid="uid://tjqgsaid0gm3" path="res://sprites/SR-75/explosion/explosion3.png" id="4_plqdd"]
+[ext_resource type="Texture2D" uid="uid://kqtvyw5whfo4" path="res://sprites/SR-75/explosion/explosion4.png" id="5_ygcw2"]
+[ext_resource type="Texture2D" uid="uid://d0hosk0ht5ep5" path="res://sprites/SR-75/explosion/explosion5.png" id="6_cus56"]
+[ext_resource type="Texture2D" uid="uid://cmvku6rl4j83h" path="res://sprites/SR-75/explosion/explosion6.png" id="7_tpbo8"]
+[ext_resource type="Texture2D" uid="uid://df8tl4u4s5frl" path="res://sprites/SR-75/explosion/explosion7.png" id="8_euddr"]
+[ext_resource type="Texture2D" uid="uid://bimjr8oq365yu" path="res://sprites/SR-75/explosion/explosion8.png" id="9_sv3os"]
+[ext_resource type="Texture2D" uid="uid://bnkup5ngdkwcv" path="res://sprites/SR-75/explosion/explosion9.png" id="10_tf5ek"]
+[ext_resource type="Texture2D" uid="uid://bk5ihqi0lkln4" path="res://sprites/SR-75/explosion/explosion10.png" id="11_mvrnw"]
+[ext_resource type="Texture2D" uid="uid://diwnkanhlrktj" path="res://sprites/SR-75/explosion/explosion11.png" id="12_pkfxf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2did"]
+radius = 136.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n8mql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_58i20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dviaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_plqdd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ygcw2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cus56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tpbo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_euddr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_sv3os")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tf5ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_mvrnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_pkfxf")
+}],
+"loop": 0,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[node name="ExplosionSr-75" unique_id=1709043152 instance=ExtResource("1_h8bq7")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=2037488881]
+position = Vector2(0, -32)
+shape = SubResource("CircleShape2D_d2did")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=2083969540]
+sprite_frames = SubResource("SpriteFrames_n8mql")
+animation = &"explosion"
+frame = 10
+frame_progress = 1.0
+speed_scale = 2.0

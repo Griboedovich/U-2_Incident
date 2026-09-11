@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bon1yf0g7one"]
+
+[ext_resource type="Script" uid="uid://djlshh763xdet" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://spbsgu1lp876" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bvk5xovr6la3w" path="res://sr_75.tscn" id="2_h2yge"]
+
+[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1920, 0, 0, 0, 0, 0, 1920, 1080, 0, 0, 0, 0, 0, 1080, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0xm2m")
+sr_25_scene = ExtResource("2_h2yge")
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(-1, -4)
+
+[node name="Sr-75Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPozition" type="Marker2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Sr-75Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0xm2m")
+
+[node name="Sr-75SpawnLocation" type="PathFollow2D" parent="Sr-75Path"]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="Sr-75Timer" to="." method="_on_sr_75_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

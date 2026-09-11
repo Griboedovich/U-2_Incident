@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bvycqu7kyq14p"]
+
+[ext_resource type="Script" uid="uid://by1sykrgpcl4g" path="res://scripts/rocket_base.gd" id="1_77pax"]
+
+[node name="RocketBase" type="RigidBody2D" unique_id=1950315640]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_77pax")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1734490890]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=846281002]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1027354170]

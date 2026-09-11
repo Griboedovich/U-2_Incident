@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bon1yf0g7one"]
+
+[ext_resource type="Script" uid="uid://djlshh763xdet" path="res://scripts/main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://spbsgu1lp876" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ct46bobohe3t1" path="res://scenes/rocket_sr_25.tscn" id="2_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dirovth2ql4p8" path="res://scenes/rocket_error.tscn" id="3_tefeu"]
+[ext_resource type="PackedScene" uid="uid://cpfugltcuujdw" path="res://scenes/hud.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://14bwi5okpebk" path="res://scenes/background_manager.tscn" id="5_tbgi4"]
+
+[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1920, 0, 0, 0, 0, 0, 1920, 1080, 0, 0, 0, 0, 0, 1080, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Main" type="Node" unique_id=1531168590]
+script = ExtResource("1_0xm2m")
+sr_25_scene = ExtResource("2_tbgi4")
+error_scene = ExtResource("3_tefeu")
+speed_range = Vector2(300, 500)
+smart_rockets = true
+random_direction = true
+
+[node name="BackgroundManager" parent="." unique_id=1909795562 instance=ExtResource("5_tbgi4")]
+scroll_speed = 150
+
+[node name="Player" parent="." unique_id=391348410 instance=ExtResource("1_ig7tw")]
+position = Vector2(-1, -4)
+
+[node name="Sr-75Timer" type="Timer" parent="." unique_id=1308844398]
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=565039221]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1309676572]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPozition" type="Marker2D" parent="." unique_id=226090576]
+position = Vector2(960, 540)
+
+[node name="Sr-75Path" type="Path2D" parent="." unique_id=1273996783]
+curve = SubResource("Curve2D_0xm2m")
+
+[node name="Sr-75SpawnLocation" type="PathFollow2D" parent="Sr-75Path" unique_id=1069047470]
+
+[node name="Hud" parent="." unique_id=679810903 instance=ExtResource("4_1bvp3")]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="Sr-75Timer" to="." method="_on_sr_75_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="Hud" to="." method="new_game"]

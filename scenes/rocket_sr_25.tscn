@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ct46bobohe3t1"]
+
+[ext_resource type="PackedScene" uid="uid://bvycqu7kyq14p" path="res://scenes/rocket_base.tscn" id="1_ghvvj"]
+[ext_resource type="Texture2D" uid="uid://duidhtda7lvkl" path="res://sprites/SR-75/fly/SR-25_fly1.png" id="2_1dlk6"]
+[ext_resource type="PackedScene" uid="uid://cxoqwxcfb1uu5" path="res://scenes/explosion_sr_75.tscn" id="2_b1lte"]
+[ext_resource type="Texture2D" uid="uid://d12mkrv5w102i" path="res://sprites/SR-75/fly/SR-25_fly2.png" id="3_b1lte"]
+[ext_resource type="Texture2D" uid="uid://cawp2lj4c4qel" path="res://sprites/SR-75/fly/SR-25_fly3.png" id="4_mvfrd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4r1p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1dlk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b1lte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mvfrd")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d2wvv"]
+radius = 40.0
+height = 192.0
+
+[node name="RocketSr-25" unique_id=1950315640 instance=ExtResource("1_ghvvj")]
+explosion_scene = ExtResource("2_b1lte")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1734490890]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_y4r1p")
+animation = &"fly"
+speed_scale = 2.0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=846281002]
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_d2wvv")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2" unique_id=1027354170]
+rect = Rect2(-43, -128, 86, 254)
+metadata/_edit_lock_ = true

@@ -47,7 +47,6 @@ offset_right = 300.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_37p78")
 theme_override_font_sizes/font_size = 128
 text = "Поехали!"

@@ -2,11 +2,12 @@
 
 [ext_resource type="FontFile" uid="uid://dio4xyt8lrr1n" path="res://fonts/americancaptaincyrillic.ttf" id="1_37p78"]
 [ext_resource type="Script" uid="uid://d0bjktdot0uc5" path="res://scripts/hud.gd" id="1_64ctp"]
+[ext_resource type="Texture2D" uid="uid://ficlx330u4gu" path="res://icons/close_24dp_E3E3E3.svg" id="3_5ysmq"]
 
-[node name="Hud" type="CanvasLayer"]
+[node name="Hud" type="CanvasLayer" unique_id=1289960736]
 script = ExtResource("1_64ctp")
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="." unique_id=1723087072]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 203.0
@@ -17,7 +18,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Message" type="Label" parent="."]
+[node name="Message" type="Label" parent="." unique_id=224961790]
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -34,7 +35,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="." unique_id=1300608707]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -46,13 +47,24 @@ offset_right = 300.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_37p78")
 theme_override_font_sizes/font_size = 128
 text = "Поехали!"
 
-[node name="MessageTimer" type="Timer" parent="."]
+[node name="MessageTimer" type="Timer" parent="." unique_id=58791022]
 wait_time = 2.0
 one_shot = true
 
+[node name="ExitButton" type="Button" parent="." unique_id=1265925798]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 120.0
+theme_override_icons/icon = ExtResource("3_5ysmq")
+icon_alignment = 1
+expand_icon = true
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

@@ -71,6 +71,8 @@ func new_game() -> void:
 
 
 func game_over() -> void:
+	if temporary_timer != null:
+		temporary_timer.queue_free()
 	$"RocketTimer".stop()
 	$ScoreTimer.stop()
 	

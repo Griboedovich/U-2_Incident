@@ -30,3 +30,7 @@ func _on_message_timer_timeout() -> void:
 func _on_start_button_pressed() -> void:
 	$StartButton.hide()
 	start_game.emit()
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()

@@ -14,6 +14,8 @@ var screen_size: Vector2
 # Размер игрока 
 var player_size: Vector2 = Vector2(160,120)
 
+var is_freezing: bool = false
+
 # Функция вызывается при первой загрузке сцены
 func _ready() -> void:
 	# Сохраняем в переменную форму коллизии для Area3D (Player)
@@ -43,10 +45,6 @@ func _process(delta: float) -> void:
 	if velocity.length() != 0:
 		velocity = velocity.normalized() * speed
 		
-	$AnimatedSprite2D.play()
-	
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO + player_size, screen_size - player_size)
 	
 	#Настраиваем анимацию
 	if velocity.y > 0:
@@ -59,6 +57,12 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.animation = "rest"
 	else:
 		$AnimatedSprite2D.animation = "up"
+	
+	$AnimatedSprite2D.play()
+	
+	if not is_freezing:
+		position += velocity * delta
+		position = position.clamp(Vector2.ZERO + player_size, screen_size - player_size)
 
 
 func start(pos: Vector2) -> void:
@@ -82,3 +86,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Rocket:
 		var rocket: Rocket = body as Rocket
 		rocket.call_deferred("explode")
+
+func freeze() -> void:
+	is_freezing = true
+func unfreeze() -> void:
+	is_freezing = false

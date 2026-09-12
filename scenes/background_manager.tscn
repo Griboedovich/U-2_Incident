@@ -6,13 +6,10 @@
 
 [node name="BackgroundManager" type="Node2D" unique_id=1909795562]
 script = ExtResource("1_46we0")
-scroll_speed = null
-display_atmosphere = null
-gap = null
 
 [node name="BackgroundStrip1" parent="." unique_id=371261721 instance=ExtResource("2_wk5uv")]
 
-[node name="BackgroundStrip2" parent="." unique_id=1237170744 instance=ExtResource("2_wk5uv")]
+[node name="BackgroundStrip2" parent="." unique_id=1237170744 groups=["freezing"] instance=ExtResource("2_wk5uv")]
 
 [node name="Atmosphere" type="Sprite2D" parent="." unique_id=1515047943]
 position = Vector2(960, 540)

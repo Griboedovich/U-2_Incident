@@ -6,18 +6,52 @@ extends Node
 
 @export var speed_range: Vector2 = Vector2(150,250)
 
-@export var smart_rockets: bool
+@export var game_mode: Dictionary[String, int] = {
+	"normal": 0,
+	"hell_yeah": 1,
+}
 
-@export var random_direction: bool
+@export var freeze_countdown_range: Vector2 = Vector2(15,30)
+@export var freeze_range: Vector2 = Vector2(1,6)
+@export var safe_frezing_rocket_count: int = 50
+
+@export var rockets_type: Dictionary[String, int] = {
+	"base": 50,
+	"error": 10,
+	"teamkiller": 40
+}
+
+@export var rockets_behaviors: Dictionary[String, int] = {
+		"stupid": 50,
+		"smart-scattering": 30,
+		"smart": 20
+	}
 
 var score
 var scroll_speed: int
+var temporary_timer: Timer
+var spawn_time: float
+var teamkiller_chance: int
+var is_freezing: bool = false
+var freezing_rocket_count: int = 0
 
 func _ready() -> void:
 	scroll_speed = $BackgroundManager.scroll_speed
+	spawn_time = $RocketTimer.wait_time
+	teamkiller_chance = rockets_type["teamkiller"]
 
 
 func new_game() -> void:
+	# Возвращаем адекватные значения после hell_yeah
+	is_freezing = false
+	$"RocketTimer".wait_time = spawn_time
+	rockets_type["teamkiller"] = teamkiller_chance
+	get_tree().call_group("freezing", "unfreeze")
+	$ScoreTimer.paused = false
+	freezing_rocket_count = 0
+	if temporary_timer != null:
+		temporary_timer.queue_free()
+	
 	score = 0
 	$StartTimer.start()
 	$Player.start($StartPozition.position)
@@ -26,6 +60,15 @@ func new_game() -> void:
 	$Hud.show_message("Сосредоточься")
 	
 	get_tree().call_group("rockets", "queue_free")
+	
+	match get_random_object(game_mode):
+		"normal":
+			pass
+		"hell_yeah":
+			start_freeze_countdown()
+		_:
+			printerr("Отсутствующий режим")
+
 
 func game_over() -> void:
 	$"RocketTimer".stop()
@@ -45,23 +88,16 @@ func _on_score_timer_timeout() -> void:
 
 
 func _on_sr_75_timer_timeout() -> void:
+	if freezing_rocket_count >= safe_frezing_rocket_count:
+		return
+	elif is_freezing:
+		freezing_rocket_count += 1
+	
 	var rocket: Rocket
 	var direction: float
 	var rocket_spawn_location: PathFollow2D = (
 		$"RocketPath/RocketSpawnLocation"
 	)
-	
-	var rockets_type: Dictionary[String, int] = {
-		"base": 50,
-		"error": 10,
-		"teamkiller": 40
-	}
-	
-	var rockets_behaviors: Dictionary[String, int] = {
-		"stupid": 50,
-		"smart-scattering": 30,
-		"smart": 20
-	}
 	
 	match get_random_object(rockets_type):
 		"base":
@@ -97,6 +133,9 @@ func _on_sr_75_timer_timeout() -> void:
 	var velocity = Vector2(0, randf_range(speed_range.x, speed_range.y))
 	rocket.linear_velocity = velocity.rotated(direction + PI)
 	
+	if is_freezing:
+		rocket.freeze()
+	
 	add_child(rocket)
 
 func get_random_object(objects: Dictionary[String, int]) -> String:
@@ -117,3 +156,52 @@ func get_random_object(objects: Dictionary[String, int]) -> String:
 			break
 	
 	return result_object
+
+func start_freeze_countdown() -> void:
+	var freeze_countdown_timer: Timer = Timer.new()
+	self.add_child(freeze_countdown_timer)
+	freeze_countdown_timer.wait_time = randf_range(
+		freeze_countdown_range.x,
+		freeze_countdown_range.y
+	)
+	freeze_countdown_timer.one_shot = true
+	freeze_countdown_timer.timeout.connect(
+		_on_freeze_countdown_timeout
+	)
+	freeze_countdown_timer.start()
+	
+	if temporary_timer != null:
+		temporary_timer.queue_free()
+	temporary_timer = freeze_countdown_timer
+
+func _on_freeze_countdown_timeout() -> void:
+	var freeze_timer: Timer = Timer.new()
+	self.add_child(freeze_timer)
+	freeze_timer.one_shot = true
+	freeze_timer.wait_time = randf_range(
+		freeze_range.x,
+		freeze_range.y
+	)
+	freeze_timer.timeout.connect(_on_freeze_timeout)
+	
+	is_freezing = true
+	get_tree().call_group("freezing", "freeze")
+	$ScoreTimer.paused = true
+	rockets_type["teamkiller"] = -1
+	$RocketTimer.wait_time = 0.05
+	
+	freeze_timer.start()
+	
+	if temporary_timer != null:
+		temporary_timer.queue_free()
+	temporary_timer = freeze_timer
+	
+func _on_freeze_timeout() -> void:
+	
+	get_tree().call_group("freezing", "unfreeze")
+	is_freezing = false
+	$"RocketTimer".wait_time = spawn_time
+	$ScoreTimer.paused = false
+	
+	if temporary_timer != null:
+		temporary_timer.queue_free()

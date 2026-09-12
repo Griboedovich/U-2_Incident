@@ -31,7 +31,7 @@ height = 192.0
 [node name="RocketTeamkiller" unique_id=1950315640 instance=ExtResource("1_0y3de")]
 collision_mask = 6
 contact_monitor = true
-max_contacts_reported = 10
+max_contacts_reported = 3
 script = ExtResource("2_jl0qw")
 explosion_scene = ExtResource("3_jl0qw")
 

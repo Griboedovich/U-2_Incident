@@ -6,6 +6,8 @@ class_name Rocket extends RigidBody2D
 @export var animation_name: String = "fly"
 @export var explosion_scene: PackedScene
 
+var velocity_value: Vector2
+
 # Функция запускается при первой загрузке ноды
 # Нужна что бы запустить анимацию при появлении
 # Ракеты
@@ -34,3 +36,13 @@ func explode() -> void:
 		explosion.rotation = self.rotation
 		self.get_parent().add_child(explosion)
 	self.queue_free()
+
+func freeze() -> void:
+	velocity_value = self.linear_velocity
+	self.linear_velocity = Vector2.ZERO
+	# Отключаем коллизии у TeamKiller-ов
+	collision_mask = 4
+	
+func unfreeze() -> void:
+	self.linear_velocity = velocity_value
+	velocity_value = Vector2.ZERO

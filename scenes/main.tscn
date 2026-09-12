@@ -20,13 +20,13 @@ sr_25_scene = ExtResource("2_tbgi4")
 error_scene = ExtResource("3_tefeu")
 teamkiller_scene = ExtResource("4_o6xl0")
 speed_range = Vector2(300, 500)
-smart_rockets = true
-random_direction = true
+game_mode = Dictionary[String, int]({
+"hell_yeah": 50,
+"normal": 50
+})
 
-[node name="BackgroundManager" parent="." unique_id=1909795562 instance=ExtResource("5_tbgi4")]
+[node name="BackgroundManager" parent="." unique_id=1909795562 groups=["freezing"] instance=ExtResource("5_tbgi4")]
 scroll_speed = 150
-display_atmosphere = true
-gap = 1.0
 
 [node name="Player" parent="." unique_id=391348410 instance=ExtResource("1_ig7tw")]
 position = Vector2(-1, -4)

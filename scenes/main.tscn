@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cpfugltcuujdw" path="res://scenes/hud.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dmxp0nujw6kyg" path="res://scenes/rocket_teamkiller.tscn" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://14bwi5okpebk" path="res://scenes/background_manager.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://biiacgx36r2g1" path="res://scenes/rocket_big_boy.tscn" id="5_tipki"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -19,7 +20,9 @@ script = ExtResource("1_0xm2m")
 sr_25_scene = ExtResource("2_tbgi4")
 error_scene = ExtResource("3_tefeu")
 teamkiller_scene = ExtResource("4_o6xl0")
+bigboy_scene = ExtResource("5_tipki")
 speed_range = Vector2(300, 500)
+big_boy_speed = 125
 game_mode = Dictionary[String, int]({
 "hell_yeah": 50,
 "normal": 50

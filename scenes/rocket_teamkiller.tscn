@@ -28,7 +28,7 @@ animations = [{
 radius = 40.0
 height = 192.0
 
-[node name="RocketTeamkiller" unique_id=1950315640 instance=ExtResource("1_0y3de")]
+[node name="RocketTeamkiller" unique_id=1950315640 groups=["teamkiller"] instance=ExtResource("1_0y3de")]
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 3

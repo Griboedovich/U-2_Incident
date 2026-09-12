@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bjsni4pkxa172"]
+
+[ext_resource type="PackedScene" uid="uid://t31oxkuspo0p" path="res://scenes/explosion_base.tscn" id="1_hvujx"]
+[ext_resource type="Texture2D" uid="uid://c17ftw4tj3gvb" path="res://sprites/big_boy/explosion/explosion1.png" id="2_p27kt"]
+[ext_resource type="Texture2D" uid="uid://0834rhqjgtxv" path="res://sprites/big_boy/explosion/explosion2.png" id="3_kqq03"]
+[ext_resource type="Texture2D" uid="uid://cwhbbu7frccth" path="res://sprites/big_boy/explosion/explosion3.png" id="4_7cd6k"]
+[ext_resource type="Texture2D" uid="uid://b0rrqh3jrefq5" path="res://sprites/big_boy/explosion/explosion4.png" id="5_titoe"]
+[ext_resource type="Texture2D" uid="uid://d3ogo8kexdimb" path="res://sprites/big_boy/explosion/explosion5.png" id="6_urdbc"]
+[ext_resource type="Texture2D" uid="uid://bti2jsl21eghn" path="res://sprites/big_boy/explosion/explosion6.png" id="7_4d1qx"]
+[ext_resource type="Texture2D" uid="uid://cptvebxlswvol" path="res://sprites/big_boy/explosion/explosion7.png" id="8_p7kmp"]
+[ext_resource type="Texture2D" uid="uid://clskmm7rm2h23" path="res://sprites/big_boy/explosion/explosion8.png" id="9_2i23o"]
+[ext_resource type="Texture2D" uid="uid://c6ihj5jlbbe6a" path="res://sprites/big_boy/explosion/explosion9.png" id="10_r2rek"]
+[ext_resource type="Texture2D" uid="uid://b635yix652hcb" path="res://sprites/big_boy/explosion/explosion10.png" id="11_42ojq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axm2t"]
+radius = 483.03726
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ptrhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p27kt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kqq03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7cd6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_titoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_urdbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4d1qx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p7kmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2i23o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r2rek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_42ojq")
+}],
+"loop": 0,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[node name="ExplosionBigBoy" unique_id=1709043152 instance=ExtResource("1_hvujx")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=2037488881]
+position = Vector2(0, 528)
+shape = SubResource("CircleShape2D_axm2t")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=2083969540]
+position = Vector2(0, 656)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ptrhs")
+animation = &"explosion"

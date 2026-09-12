@@ -3,8 +3,10 @@ extends Node
 @export var sr_25_scene: PackedScene
 @export var error_scene: PackedScene
 @export var teamkiller_scene: PackedScene
+@export var bigboy_scene: PackedScene
 
 @export var speed_range: Vector2 = Vector2(150,250)
+@export var big_boy_speed: int = 30
 
 @export var game_mode: Dictionary[String, int] = {
 	"normal": 0,
@@ -16,9 +18,10 @@ extends Node
 @export var safe_frezing_rocket_count: int = 50
 
 @export var rockets_type: Dictionary[String, int] = {
-	"base": 50,
+	"base": 45,
 	"error": 10,
-	"teamkiller": 40
+	"teamkiller": 40,
+	"bigboy": 5
 }
 
 @export var rockets_behaviors: Dictionary[String, int] = {
@@ -32,13 +35,16 @@ var scroll_speed: int
 var temporary_timer: Timer
 var spawn_time: float
 var teamkiller_chance: int
+var bigboy_chance: int
 var is_freezing: bool = false
 var freezing_rocket_count: int = 0
+var is_big_boy_spawning: bool = false
 
 func _ready() -> void:
 	scroll_speed = $BackgroundManager.scroll_speed
 	spawn_time = $RocketTimer.wait_time
 	teamkiller_chance = rockets_type["teamkiller"]
+	bigboy_chance = rockets_type["bigboy"]
 
 
 func new_game() -> void:
@@ -46,6 +52,7 @@ func new_game() -> void:
 	is_freezing = false
 	$"RocketTimer".wait_time = spawn_time
 	rockets_type["teamkiller"] = teamkiller_chance
+	rockets_type["bigboy"] = bigboy_chance
 	get_tree().call_group("freezing", "unfreeze")
 	$ScoreTimer.paused = false
 	freezing_rocket_count = 0
@@ -108,31 +115,45 @@ func _on_sr_75_timer_timeout() -> void:
 			rocket = error_scene.instantiate()
 		"teamkiller":
 			rocket = teamkiller_scene.instantiate()
+		"bigboy":
+			rocket = bigboy_scene.instantiate()
+			is_big_boy_spawning = true
+			rocket.tree_exited.connect(_on_big_boy_exit)
+			rockets_type["teamkiller"] = -1
+			rockets_type["bigboy"] = -1
+			get_tree().call_group("teamkiller", "off_teamkill")
 		_:
 			printerr("Как могла появится ракета, который нет?")
 	
 	rocket_spawn_location.progress_ratio = randf()
 	rocket.position = rocket_spawn_location.position
 	
-	match get_random_object(rockets_behaviors):
-		"stupid":
-			direction = rocket_spawn_location.rotation + PI
-			direction += randf_range(-PI / 4, PI / 4)
-			rocket.rotation = direction
-		"smart-scattering":
-			direction = ($Player.position - rocket_spawn_location.position).angle() + PI/2
-			direction += randf_range(-PI / 6, PI / 6)
-			rocket.rotation = direction
-		"smart":
-			direction = ($Player.position - rocket_spawn_location.position).angle() + PI/2
-			rocket.rotation = direction
-		_:
-			printerr("Как могла появится ракета, который нет?")
+	if not is_big_boy_spawning:
+		match get_random_object(rockets_behaviors):
+			"stupid":
+				direction = rocket_spawn_location.rotation + PI
+				direction += randf_range(-PI / 4, PI / 4)
+				rocket.rotation = direction
+			"smart-scattering":
+				direction = ($Player.position - rocket_spawn_location.position).angle() + PI/2
+				direction += randf_range(-PI / 6, PI / 6)
+				rocket.rotation = direction
+			"smart":
+				direction = ($Player.position - rocket_spawn_location.position).angle() + PI/2
+				rocket.rotation = direction
+			_:
+				printerr("Как могла появится ракета, который нет?")
+	else:
+		direction = ($Player.position - rocket_spawn_location.position).angle() + PI/2
+		rocket.rotation = direction
 	
 	# ScrollSpeed заставляет падать как вверх так и вниз
 	# в виду того, что у них 
 	
 	var velocity = Vector2(0, randf_range(speed_range.x, speed_range.y))
+	if is_big_boy_spawning:
+		velocity = Vector2(0, big_boy_speed)
+		is_big_boy_spawning = false
 	rocket.linear_velocity = velocity.rotated(direction + PI)
 	
 	if is_freezing:
@@ -190,6 +211,7 @@ func _on_freeze_countdown_timeout() -> void:
 	get_tree().call_group("freezing", "freeze")
 	$ScoreTimer.paused = true
 	rockets_type["teamkiller"] = -1
+	rockets_type["bigboy"] = -1
 	$RocketTimer.wait_time = 0.05
 	
 	freeze_timer.start()
@@ -207,3 +229,7 @@ func _on_freeze_timeout() -> void:
 	
 	if temporary_timer != null:
 		temporary_timer.queue_free()
+
+func _on_big_boy_exit() -> void:
+	rockets_type["teamkiller"] = teamkiller_chance
+	rockets_type["bigboy"] = bigboy_chance

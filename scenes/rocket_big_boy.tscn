@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://biiacgx36r2g1"]
+
+[ext_resource type="PackedScene" uid="uid://bvycqu7kyq14p" path="res://scenes/rocket_base.tscn" id="1_kykqb"]
+[ext_resource type="PackedScene" uid="uid://bjsni4pkxa172" path="res://scenes/explosion_big_boy.tscn" id="2_3h6g5"]
+[ext_resource type="Texture2D" uid="uid://dm8xxft1eok37" path="res://sprites/big_boy/fly/SR-25_fly1.png" id="2_5bvf4"]
+[ext_resource type="Texture2D" uid="uid://c1a7m8ujweyrr" path="res://sprites/big_boy/fly/SR-25_fly2.png" id="3_3h6g5"]
+[ext_resource type="Texture2D" uid="uid://wq4cebgharvc" path="res://sprites/big_boy/fly/SR-25_fly3.png" id="4_l8a3i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axm2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5bvf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3h6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l8a3i")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_if2ko"]
+
+[node name="RocketBigBoy" unique_id=1950315640 instance=ExtResource("1_kykqb")]
+explosion_scene = ExtResource("2_3h6g5")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1734490890]
+position = Vector2(0, 667)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_axm2t")
+animation = &"fly"
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=846281002]
+position = Vector2(0, 490)
+shape = SubResource("CircleShape2D_if2ko")
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3" unique_id=1214060902]
+position = Vector2(0, 490)
+polygon = PackedVector2Array(-12, -496, 12, -496, 84, -231, 85, -79, 180, 9, 180, 81, 110, 82, 108, 249, 227, 368, 228, 465, 86, 466, 86, 487, 86, 702, -84, 701, -85, 468, -228, 466, -230, 368, -107, 248, -110, 83, -182, 81, -181, 9, -88, -88, -86, -231)

@@ -28,6 +28,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 freezing="Для имитации бага с замороской"
+teamkiller=""
 
 [input]
 

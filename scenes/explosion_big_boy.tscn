@@ -54,6 +54,7 @@ animations = [{
 }]
 
 [node name="ExplosionBigBoy" unique_id=1709043152 instance=ExtResource("1_hvujx")]
+max_contacts_reported = 15
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=2037488881]
 position = Vector2(0, 528)

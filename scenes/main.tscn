@@ -28,6 +28,12 @@ game_mode = Dictionary[String, int]({
 "normal": 50
 })
 freeze_range = Vector2(5, 10)
+rockets_type = Dictionary[String, int]({
+"base": 20,
+"bigboy": 3,
+"error": 7,
+"teamkiller": 70
+})
 
 [node name="BackgroundManager" parent="." unique_id=1909795562 groups=["freezing"] instance=ExtResource("5_tbgi4")]
 scroll_speed = 150

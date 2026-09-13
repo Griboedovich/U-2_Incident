@@ -4,6 +4,7 @@ extends Node
 @export var error_scene: PackedScene
 @export var teamkiller_scene: PackedScene
 @export var bigboy_scene: PackedScene
+@export var spinner_scene: PackedScene
 
 @export var speed_range: Vector2 = Vector2(150,250)
 @export var big_boy_speed: int = 30
@@ -21,7 +22,8 @@ extends Node
 	"base": 45,
 	"error": 10,
 	"teamkiller": 40,
-	"bigboy": 5
+	"bigboy": 5,
+	"spinner": 50
 }
 
 @export var rockets_behaviors: Dictionary[String, int] = {
@@ -122,6 +124,8 @@ func _on_sr_75_timer_timeout() -> void:
 			rockets_type["teamkiller"] = -1
 			rockets_type["bigboy"] = -1
 			get_tree().call_group("teamkiller", "off_teamkill")
+		"spinner":
+			rocket = spinner_scene.instantiate()
 		_:
 			printerr("Как могла появится ракета, который нет?")
 	

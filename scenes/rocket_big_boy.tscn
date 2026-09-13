@@ -39,6 +39,9 @@ position = Vector2(0, 490)
 shape = SubResource("CircleShape2D_if2ko")
 disabled = true
 
+[node name="VisibleOnScreenNotifier2D" parent="." index="2" unique_id=1027354170]
+rect = Rect2(-232, -10, 470, 1336)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3" unique_id=1214060902]
 position = Vector2(0, 490)
 polygon = PackedVector2Array(-12, -496, 12, -496, 84, -231, 85, -79, 180, 9, 180, 81, 110, 82, 108, 249, 227, 368, 228, 465, 86, 466, 86, 487, 86, 702, -84, 701, -85, 468, -228, 466, -230, 368, -107, 248, -110, 83, -182, 81, -181, 9, -88, -88, -86, -231)

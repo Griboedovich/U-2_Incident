@@ -31,7 +31,6 @@ height = 192.0
 explosion_scene = ExtResource("2_b1lte")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1734490890]
-scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_y4r1p")
 animation = &"fly"
 speed_scale = 2.0

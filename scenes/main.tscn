@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dmxp0nujw6kyg" path="res://scenes/rocket_teamkiller.tscn" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://14bwi5okpebk" path="res://scenes/background_manager.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://biiacgx36r2g1" path="res://scenes/rocket_big_boy.tscn" id="5_tipki"]
+[ext_resource type="PackedScene" uid="uid://rmnipj7bcg1y" path="res://scenes/rocket_spinner.tscn" id="6_85g3d"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -21,18 +22,20 @@ sr_25_scene = ExtResource("2_tbgi4")
 error_scene = ExtResource("3_tefeu")
 teamkiller_scene = ExtResource("4_o6xl0")
 bigboy_scene = ExtResource("5_tipki")
+spinner_scene = ExtResource("6_85g3d")
 speed_range = Vector2(300, 500)
 big_boy_speed = 125
 game_mode = Dictionary[String, int]({
-"hell_yeah": 50,
-"normal": 50
+"hell_yeah": 30,
+"normal": 70
 })
 freeze_range = Vector2(5, 10)
 rockets_type = Dictionary[String, int]({
 "base": 20,
-"bigboy": 3,
-"error": 7,
-"teamkiller": 70
+"bigboy": 1,
+"error": 2,
+"spinner": 5,
+"teamkiller": 72
 })
 
 [node name="BackgroundManager" parent="." unique_id=1909795562 groups=["freezing"] instance=ExtResource("5_tbgi4")]

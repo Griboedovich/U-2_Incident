@@ -10,8 +10,8 @@ extends Node
 @export var big_boy_speed: int = 30
 
 @export var game_mode: Dictionary[String, int] = {
-	"normal": 0,
-	"hell_yeah": 1,
+	"normal": 65,
+	"hell_yeah": 35,
 }
 
 @export var freeze_countdown_range: Vector2 = Vector2(15,30)
@@ -19,11 +19,11 @@ extends Node
 @export var safe_frezing_rocket_count: int = 50
 
 @export var rockets_type: Dictionary[String, int] = {
-	"base": 45,
-	"error": 10,
-	"teamkiller": 40,
-	"bigboy": 5,
-	"spinner": 50
+	"base": 34,
+	"error": 2,
+	"teamkiller": 60,
+	"bigboy": 1,
+	"spinner": 3
 }
 
 @export var rockets_behaviors: Dictionary[String, int] = {

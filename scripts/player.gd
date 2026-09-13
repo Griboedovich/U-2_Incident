@@ -6,6 +6,7 @@ signal hit
 
 # Cкорость: пиксели в секунду
 @export var speed: int = 400 
+@export var explosion_scene: PackedScene
 
 var collision_shape: CollisionPolygon2D
 
@@ -83,9 +84,19 @@ func _on_body_entered(body: Node2D) -> void:
 	# Отключаем форму столкновений в конце текущего кадра,
 	# Чтобы не допустить повторного вызова сигнала hit
 	collision_shape.set_deferred("disabled", true)
+	
+	self.call_deferred("explode_player")
+	
 	if body is Rocket:
 		var rocket: Rocket = body as Rocket
 		rocket.call_deferred("explode")
+
+func explode_player() -> void:
+	if not (explosion_scene == null):
+		var explosion = explosion_scene.instantiate()
+		explosion.position = self.position
+		explosion.rotation = self.rotation
+		self.get_parent().add_child(explosion)
 
 func freeze() -> void:
 	is_freezing = true
